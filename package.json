@@ -1,0 +1,31 @@
+{
+  "name": "oathforge-api-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/GuildCrypt/oathforge-api-server.git"
+  },
+  "author": "GuildCrypt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuildCrypt/oathforge-api-server/issues"
+  },
+  "homepage": "https://github.com/GuildCrypt/oathforge-api-server#readme",
+  "dependencies": {
+    "amorph": "^4.2.0",
+    "amorph-hex": "^3.0.1",
+    "delay": "^4.1.0",
+    "fs-extra": "^7.0.1",
+    "oathforge-provider-client": "^2.0.0",
+    "restify": "^7.6.0",
+    "web3-providers-http": "^1.0.0-beta.37"
+  },
+  "engines": {
+    "node": "8.9.1"
+  }
+}
