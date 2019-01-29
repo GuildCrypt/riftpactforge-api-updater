@@ -20,6 +20,7 @@
     "amorph": "^4.2.0",
     "amorph-hex": "^3.0.1",
     "delay": "^4.1.0",
+    "forever": "^0.15.3",
     "fs-extra": "^7.0.1",
     "oathforge-provider-client": "^2.0.0",
     "restify": "^7.6.0",
