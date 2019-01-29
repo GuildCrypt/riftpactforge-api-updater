@@ -1,2 +1,2 @@
-server: forever --watch server.js
-cache: forever --watch cache.js
+server: forever server.js
+cache: forever cache.js
