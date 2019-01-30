@@ -2,9 +2,19 @@ const Web3HttpProvider = require('web3-providers-http')
 const OathForgeProviderClient = require('oathforge-provider-client')
 const Amorph = require('amorph')
 const amorphHex = require('amorph-hex')
-const fs = require('fs-extra')
-const cachePath = require('./lib/cachePath')
 const delay = require('delay')
+const fs = require('fs')
+const aws = require('aws-sdk')
+
+const secretAccessKey = fs.readFileSync('./secrets/aws.txt', 'utf8').trim()
+
+aws.config.update({
+    secretAccessKey,
+    accessKeyId: "AKIAIZBQLTISIBWWR3TA",
+    region: 'us-east-1'
+})
+
+const s3 = new aws.S3()
 
 const mainnetProvider = new Web3HttpProvider(`https://mainnet.infura.io/v3/ddf5fd9bc2314199814e9398df57f486`)
 mainnetProvider.sendAsync = mainnetProvider.send
@@ -12,21 +22,26 @@ mainnetProvider.sendAsync = mainnetProvider.send
 const oathForgeAddress = Amorph.from(amorphHex.unprefixed, 'a307b905140c82b37f2d7d806ef9d8858d30ac87')
 const oathForgeProviderClient = new OathForgeProviderClient(mainnetProvider, oathForgeAddress)
 
-function cache() {
+function update() {
   return oathForgeProviderClient.fetchOathForgeState().then((oathForgeState) => {
-    const cache = {
+    const payload = {
       retrievedAt: Math.round((new Date).getTime() / 1000),
       data: oathForgeState.toSimplePojo()
     }
-    return fs.writeFile(cachePath, JSON.stringify(cache), 'utf8')
+    return s3.upload({
+      Bucket: 'oathforge-api',
+      ContentType: "application/json",
+      Key: 'v0/mainnet/a307b905140c82b37f2d7d806ef9d8858d30ac87',
+      Body: JSON.stringify(payload)
+    }).promise()
   })
 }
 
 const targetElapsed = 15000
 
-function loopCache() {
+function loopUpdate() {
   const startedAt = new Date
-  return cache().then(() => {
+  return update().then(() => {
     const finishedAt = new Date
     const elapsed = finishedAt - startedAt
     console.log(startedAt, finishedAt, elapsed)
@@ -36,8 +51,8 @@ function loopCache() {
       return delay(0)
     }
   }).then(() => {
-    return loopCache()
+    return loopUpdate()
   })
 }
 
-loopCache()
+loopUpdate()

@@ -1,2 +1,1 @@
-web: forever server.js
-cache: forever cache.js
+loop-update: forever loopUpdate.js
