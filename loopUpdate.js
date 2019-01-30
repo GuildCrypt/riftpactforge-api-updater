@@ -6,7 +6,7 @@ const delay = require('delay')
 const fs = require('fs')
 const aws = require('aws-sdk')
 
-const secretAccessKey = fs.readFileSync('./secrets/aws.txt', 'utf8').trim()
+const secretAccessKey = process.env.AWS_SECRET || fs.readFileSync('./secrets/aws.txt', 'utf8').trim()
 
 aws.config.update({
     secretAccessKey,
