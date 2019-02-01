@@ -28,6 +28,7 @@ function update() {
       retrievedAt: Math.round((new Date).getTime() / 1000),
       data: oathForgeState.toSimplePojo()
     }
+    console.log(JSON.stringify(payload, null, 2))
     return s3.upload({
       Bucket: 'oathforge-api',
       ContentType: "application/json",
