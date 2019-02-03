@@ -5,6 +5,7 @@ const amorphHex = require('amorph-hex')
 const delay = require('delay')
 const fs = require('fs')
 const aws = require('aws-sdk')
+const amorphNumber = require('amorph-number')
 
 const secretAccessKey = process.env.AWS_SECRET || fs.readFileSync('./secrets/aws.txt', 'utf8').trim()
 
@@ -35,6 +36,7 @@ function update(network, oathForgeAddressHexUnprefixed, oathForgeProviderClient)
   return oathForgeProviderClient.fetchOathForgeState().then((oathForgeState) => {
     const payload = {
       retrievedAt: Math.round((new Date).getTime() / 1000),
+      blockNumber: oathForgeProviderClient.ultralightbeam.blockPoller.block.number.to(amorphNumber.unsigned),
       data: oathForgeState.toSimplePojo()
     }
     return upload(network, oathForgeAddressHexUnprefixed, payload)
