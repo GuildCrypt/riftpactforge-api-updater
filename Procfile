@@ -1,1 +1,1 @@
-loop-update: forever loopUpdate.js
+update: forever index.js
