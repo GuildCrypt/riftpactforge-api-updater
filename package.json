@@ -1,5 +1,5 @@
 {
-  "name": "oathforge-api-updater",
+  "name": "riftpactforge-api-updater",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/GuildCrypt/oathforge-api-updater.git"
+    "url": "git+ssh://git@github.com/GuildCrypt/riftpactforge-api-updater.git"
   },
   "author": "GuildCrypt",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GuildCrypt/oathforge-api-updater/issues"
+    "url": "https://github.com/GuildCrypt/riftpactforge-api-updater/issues"
   },
-  "homepage": "https://github.com/GuildCrypt/oathforge-api-updater#readme",
+  "homepage": "https://github.com/GuildCrypt/riftpactforge-api-updater#readme",
   "dependencies": {
     "amorph": "^4.2.0",
     "amorph-hex": "^3.0.1",
@@ -23,7 +23,7 @@
     "aws-sdk": "^2.395.0",
     "delay": "^4.1.0",
     "forever": "^0.15.3",
-    "oathforge-provider-client": "^2.1.0",
+    "riftpactforge-provider-client": "^3.0.0",
     "web3-providers-http": "^1.0.0-beta.37"
   },
   "engines": {
