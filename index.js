@@ -11,7 +11,7 @@ const UpdateQueue = require('./lib/UpdateQueue')
 
 const targetElapsed = 15000
 
-//start('mainnet', 'a307b905140c82b37f2d7d806ef9d8858d30ac87')
+start('mainnet', '6e87624b3bc434cd708c2ca517541ddc89c7d5b3')
 start('rinkeby', 'd7b4a7d2bb0ffa29a7d2f17cd6b7e176c48060a6')
 
 function start(network, riftpactforgeAddressHexUnprefixed) {
